@@ -14,8 +14,8 @@
 >* 执行CreateDH.py，程序将自动计算机械臂的正逆运动学并将姿态可视化。
 # 仿真实物对照图
 <div style="display:flex;">
-    <img src="依据ABB机械臂建立的仿真图.png" width="50%" style="margin-right:1px;">
-    <img src="参照机械臂ABB.png" width="50%">
+    <img src="依据ABB机械臂建立的仿真图.png" width="40%" style="margin-right:10px;">
+    <img src="参照机械臂ABB.png" width="40%">
 </div>
 
 # 参考资料：
