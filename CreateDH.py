@@ -6,6 +6,7 @@
 import roboticstoolbox as rtb
 from math import pi
 import numpy as np
+from spatialmath import SE3
 
 L1 = 0.320
 L3 = 0.975
@@ -15,18 +16,18 @@ L6 = 0.887
 robot = rtb.DHRobot(
     [
         rtb.RevoluteMDH(alpha=0, a=0, offset=0, d=L1),
-        rtb.RevoluteMDH(alpha=-pi / 2, a=L1, offset=0, d=0),
+        rtb.RevoluteMDH(alpha=-pi / 2, a=0.1, offset=0, d=0),
         rtb.RevoluteMDH(alpha=0, a=L3, offset=0, d=0),
         rtb.RevoluteMDH(alpha=-pi / 2, a=0, offset=0, d=L6),
         rtb.RevoluteMDH(alpha=pi / 2, a=0, offset=0, d=0),
-        rtb.RevoluteMDH(alpha=-pi / 2, a=L5, offset=0, d=0)
+        rtb.RevoluteMDH(alpha=-pi / 2, a=0, offset=0, d=L5)
     ], name="six link")
 
-init_T = np.array([0, pi / 6, -pi / 6, 0, 0, 0])
-theta = [0, pi / 6, -pi / 6, 0, 0, 0]
-robot.teach(theta) 		#示教模式
+init_T = np.array([0,-2/3*pi,pi/12, 0, 0, 0])
 robot.plot(init_T, movie='six link.png')
-p = robot.fkine(theta)  # 机械臂求正解
-print(p)
-q = robot.ikine_LM(p)  # 机械臂求逆解
-print(q)
+robot.teach(init_T)  # 示教模式
+Tep = SE3.Trans(1,0, 1.5) * SE3.OA([0, 1, 0], [0, 0, -1])
+sol = robot.ik_LM(Tep)  # solve IK
+q_pickup = sol[0]
+qt = rtb.jtraj(robot.q, q_pickup, 50)
+robot.plot(qt.q, backend='pyplot', movie='panda1.gif')

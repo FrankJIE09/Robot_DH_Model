@@ -13,10 +13,14 @@
 >* 将程序中的init_T和theta设置为机械臂的初始姿态和运动学参数。
 >* 执行CreateDH.py，程序将自动计算机械臂的正逆运动学并将姿态可视化。
 # 仿真实物对照图
+
 <div style="display:flex;">
-    <img src="./依据ABB机械臂建立的仿真图.png" width="45%" style="margin-right:10px;">
+    <img src="./six link.png" width="45%" style="margin-right:10px;">
     <img src="./参照机械臂ABB.png" width="45%">
 </div>
+
+# 仿真动图
+<img src="./panda1.gif" alt="example">
 
 # 参考资料：
 ![](./改进DH建模方式.png)
