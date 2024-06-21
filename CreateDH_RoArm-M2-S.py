@@ -4,8 +4,8 @@ import numpy as np
 from spatialmath import SE3
 
 # 定义机械臂的参数
-d1 = 0.02
-L1, L2, L3, L4 = 0.1, 0.1, 0.1, 0.1
+d1 = 0.03
+L1, L2, L3, L4 = 0.12306, 0.23682, 0.28015, 0.1
 
 # 构造机械臂的DH模型
 robot = rtb.DHRobot(
@@ -37,7 +37,7 @@ robot.teach(init_T)
 # robot.plot(init_T, movie='RoArm-M2-S.png')
 
 # 设定机械臂的关节角度
-joint_angles = [0, pi / 4, pi / 4, pi / 4, 0]
+joint_angles = [pi / 4, pi / 4, -pi / 4, -pi / 4, 0]
 
 # 计算正运动学解
 end_effector_pose = robot.fkine(joint_angles)
@@ -58,3 +58,5 @@ if solutions.success:
     print("关节角度:", solutions.q)
 else:
     print("逆运动学求解失败")
+qt = rtb.jtraj(robot.q, solutions.q, 50)
+robot.plot(qt.q, backend='pyplot', movie='RoArm-M2-S.gif')
