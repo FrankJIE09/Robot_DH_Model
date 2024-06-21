@@ -29,7 +29,7 @@ robot = rtb.DHRobot(
 )
 
 # 初始姿态的关节角度
-init_T = np.array([0, 0, 0, 0,0])
+init_T = np.array([0, 0, 0, 0, 0])
 
 # 启动示教模式，允许用户通过GUI界面手动控制机械臂
 robot.teach(init_T)
@@ -37,7 +37,7 @@ robot.teach(init_T)
 # robot.plot(init_T, movie='RoArm-M2-S.png')
 
 # 设定机械臂的关节角度
-joint_angles = [0, pi/4, pi/4, pi/4,0]
+joint_angles = [0, pi / 4, pi / 4, pi / 4, 0]
 
 # 计算正运动学解
 end_effector_pose = robot.fkine(joint_angles)
@@ -49,9 +49,9 @@ print(end_effector_pose)
 # 设定末端执行器的目标位置和姿态
 # 例如：目标位置 (x, y, z) = (0.1, 0.1, 0.1) 和单位矩阵表示的姿态
 # T = SE3(0.1, 0.1, 0.1) * SE3.RPY([0, 0, 0], order='xyz')
-
-# 计算逆运动学解
-solutions = robot.ikine_LM(end_effector_pose)
+initial_joint_angles = [0, pi / 2, pi / 5, pi / 4, 0]
+# 计算逆运动学解，并设置初始关节角度
+solutions = robot.ikine_LM(end_effector_pose, q0=initial_joint_angles)
 
 # 打印逆运动学解
 if solutions.success:
