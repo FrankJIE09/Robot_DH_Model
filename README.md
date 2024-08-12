@@ -6,7 +6,7 @@
 >* roboticstoolbox库
 
 # 安装必要库
-> pip install roboticstoolbox-python
+> pip install roboticstoolbox-python==1.1.0
 # 使用方法
 
 >* 在运行该程序前，请确保安装了Python 3.x和roboticstoolbox库。
