@@ -1,0 +1,11 @@
+# Conda 环境：Robot_DH_Model（支持 roboticstoolbox-python）
+name: robot_dh_model
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy
+  - pip
+  - pip:
+    - roboticstoolbox-python==1.1.0
